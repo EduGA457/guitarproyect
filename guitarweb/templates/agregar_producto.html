@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Producto</title>
+</head>
+<body>
+    <h1>Agregar Producto</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <label for="nombre">Nombre del Producto:</label>
+        {{ form.nombre }}
+        <br>
+
+        <label for="precio">Precio del Producto:</label>
+        {{ form.precio }}
+        <br>
+
+        <label for="stock">Stock del Producto:</label>
+        {{ form.stock }}
+        <br>
+
+        <label for="descripcion">Descripción:</label>
+        {{ form.descripcion }}
+        <br>
+
+        <label for="imagen">Imagen del Producto:</label>
+        {{ form.imagen }}
+        <br>
+
+        <button type="submit">Agregar Producto</button>
+    </form>
+
+    <br>
+    <a href="{% url 'index' %}">Volver a la página principal</a>
+</body>
+</html>

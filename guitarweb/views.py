@@ -1,71 +1,30 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Productos, Usuario
-from .forms import ProductoForm, UsuarioForm
+from django.shortcuts import render,redirect
+from django.contrib.auth.decorators import login_required
+from .forms import ProductoForm
+from django.contrib.auth.views import LoginView
 
-def lista_productos(request):
-    productos = Productos.objects.all()
-    return render(request, 'lista_productos.html', {'productos': productos})
+# Vista de la página principal
+def index(request):
+    return render(request, 'index.html') 
 
-def crear_producto(request):
+# Vista personalizada para login
+class CustomLoginView(LoginView):
+    template_name = 'login.html'  
+
+# Vista protegida que requiere autenticación
+@login_required
+def vista_protegida(request):
+    return render(request, 'protegida.html')
+
+
+@login_required  # Asegura que solo los usuarios autenticados puedan agregar productos
+def agregar_producto(request):
     if request.method == 'POST':
-        form = ProductoForm(request.POST)
+        form = ProductoForm(request.POST, request.FILES)  # Maneja los archivos
         if form.is_valid():
-            form.save()
-            return redirect('lista_productos')
+            form.save()  # Guarda el nuevo producto en la base de datos
+            return redirect('index')  # Redirige a la página principal después de agregar el producto
     else:
-        form = ProductoForm()
-    return render(request, 'crear_producto.html', {'form': form})
+        form = ProductoForm()  # Crea un formulario vacío
 
-def actualizar_producto(request, id):
-    producto = get_object_or_404(Productos, id=id)
-    if request.method == 'POST':
-        form = ProductoForm(request.POST, instance=producto)
-        if form.is_valid():
-            form.save()
-            return redirect('lista_productos')
-    else:
-        form = ProductoForm(instance=producto)
-    return render(request, 'editar_producto.html', {'form': form})
-
-def eliminar_producto(request, id):
-    producto = get_object_or_404(Productos, id=id)
-    if request.method == 'POST':
-        producto.delete()
-        return redirect('lista_productos')
-    return render(request, 'eliminar_producto.html', {'producto': producto})
-
-
-def lista_usuarios(request):
-    usuarios = Usuario.objects.all()
-    return render(request, 'lista_usuarios.html', {'usuarios': usuarios})
-
-def crear_usuario(request):
-    if request.method == 'POST':
-        form = UsuarioForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('lista_usuarios')
-    else:
-        form = UsuarioForm()
-    return render(request, 'crear_usuario.html', {'form': form})
-
-def actualizar_usuario(request, id):
-    usuario = get_object_or_404(Usuario, id=id)
-    if request.method == 'POST':
-        form = UsuarioForm(request.POST, instance=usuario)
-        if form.is_valid():
-            form.save()
-            return redirect('lista_usuarios')
-    else:
-        form = UsuarioForm(instance=usuario)
-    return render(request, 'editar_usuario.html', {'form': form})
-
-def eliminar_usuario(request, id):
-    usuario = get_object_or_404(Usuario, id=id)
-    if request.method == 'POST':
-        usuario.delete()
-        return redirect('lista_usuarios')
-    return render(request, 'eliminar_usuario.html', {'usuario': usuario})
-
-def home(request):
-    return redirect('lista_productos')
+    return render(request, 'agregar_producto.html', {'form': form})

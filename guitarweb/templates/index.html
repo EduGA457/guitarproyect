@@ -4,91 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MI PRIMERA PAGINA WEB</title>
+
+    <!-- Carga de fuentes y estilos -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'guitarweb/css/styles.css' %}">
 </head>
 <body>
-<link rel="stylesheet" href="styles.css">
-<script src="assest/scripts/slider.js"></script>
+    <script src="{% static 'guitarweb/scripts/slider.js' %}"></script>
 
-<div class="Encabezado">
-    <nav>
-        <ul>
-            <li><a href="#Inicio">Inicio</a></li>
-            <li><a href="#Sobre-mi">Sobre-mi</a></li>
-            <li><a href="#Galeria">Galeria Productos</a></li>
-            <li><a href="#Contacto">Contacto</a></li>
-        </ul>
-    </nav> 
-     
-    <div class="slider-container">
-        <img src="assest/imagenes/Portada1.jpg" alt="Portada 1"  height="700" width="1500" class="slider-image active">
-        <img src="assest/imagenes/Portada2.jpg" alt="Portada 2" height="700" width="1500" class="slider-image">
-        <img src="assest/imagenes/Portada3.jpg" alt="Portada 3" height="700" width="1500" class="slider-image">
-        <img src="assest/imagenes/Portada4.jpg" alt="Portada 4" height="700" width="1500" class="slider-image">
+    <!-- Encabezado con navegación -->
+    <div class="Encabezado">
+        <nav>
+            <ul>
+                <li><a href="#Inicio">Inicio</a></li>
+                <li><a href="#Sobre-mi">Sobre mí</a></li>
+                <li><a href="#Galeria">Galería Productos</a></li>
+                <li><a href="#Contacto">Contacto</a></li>
+            </ul>
+        </nav> 
+        
+        <!-- Slider -->
+        <div class="slider-container">
+            <img src="{% static 'guitarweb/images/Portada1.jpg' %}" alt="Portada 1" height="700" width="1500" class="slider-image active">
+            <img src="{% static 'guitarweb/images/Portada2.jpg' %}" alt="Portada 2" height="700" width="1500" class="slider-image">
+            <img src="{% static 'guitarweb/images/Portada3.jpg' %}" alt="Portada 3" height="700" width="1500" class="slider-image">
+            <img src="{% static 'guitarweb/images/Portada4.jpg' %}" alt="Portada 4" height="700" width="1500" class="slider-image">
+        </div>
+    </div>    
+
+    <!-- Sección Sobre mí -->
+    <div id="Sobre-mi">
+        <h1>¿Quiénes Somos?</h1>    
+        <p>
+            En MusicPride, somos apasionados por la música y todo lo que ella representa. Desde nuestros inicios, hemos trabajado para ofrecer a músicos de todos los niveles las mejores herramientas para crear, inspirar y disfrutar.
+            Creemos que la música une a las personas, y queremos ser parte de tu viaje musical. Ya seas un principiante o un músico avanzado, estamos aquí para ayudarte a alcanzar tus metas.
+            ¡Visítanos y descubre por qué somos la tienda de confianza para tantos músicos!
+        </p>
     </div>
-</div>    
 
-    <div id="Sobre-mi"">
-        <h1>Quienes Somos?</h1>    
-            <p>
-                En MusicPride, somos apasionados por la música y todo lo que ella representa. Desde nuestros inicios, hemos trabajado para ofrecer a músicos de todos los niveles las mejores herramientas para crear, inspirar y disfrutar.
-                creemos que la música une a las personas, y queremos ser parte de tu viaje musical. Ya seas un principiante o un músico avanzado, estamos aquí para ayudarte a alcanzar tus metas.
-                Visítanos y descubre por qué somos la tienda de confianza para tantos músicos. ¡Te esperamos!
-            </p>
-    </div>
-
+    <!-- Galería de Productos -->
     <h1>Productos</h1>
     <div class="Galeria-Productos" id="Galeria">
-        <div class="Galeria"  id="Producto_1">
-            <h2 id="Nombre1">Fender Jaguar</h2>
-            <img src="assest/imagenes/prayer.webp " alt="Fender prayer" width="500" height="350" id="Imagen1">
-            <p id="Precio1">$12000.00</p>
-            <input type="submit" Value="Comprar" src="Compra-producto.html" ></input>
+        <div class="Galeria" id="Producto_1">
+            <h2>Fender Jaguar</h2>
+            <img src="{% static 'guitarweb/images/prayer.webp' %}" alt="Fender prayer" width="500" height="350">
+            <p>$12000.00</p>
+            <input type="submit" value="Comprar">
         </div>
-        <div class="Galeria"  id="Producto_2"> 
+        <div class="Galeria" id="Producto_2"> 
             <h2>Fender Telecaster</h2>
-            <img src="assest/imagenes/tele.webp" alt="Fender Telecaster" width="500" height="350">
+            <img src="{% static 'guitarweb/images/tele.webp' %}" alt="Fender Telecaster" width="500" height="350">
             <p>$17000.00</p>
-            <input type="submit" Value="Comprar"src="Compra-producto.html" ></input>
+            <input type="submit" value="Comprar">
         </div>
-        <div class="Galeria"  id="Producto_3">   
+        <div class="Galeria" id="Producto_3">   
             <h2>Yamaha</h2>
-            <img src="assest/imagenes/yama.webp" alt="Yamaha PAC611HFMTB" width="500" height="350">
+            <img src="{% static 'guitarweb/images/yama.webp' %}" alt="Yamaha PAC611HFMTB" width="500" height="350">
             <p>$18000.00</p>
-            <input type="submit" Value="Comprar" src="Compra-producto.html" ></input>
+            <input type="submit" value="Comprar">
         </div>
-        <div class="Galeria"  id="Producto_4">
+        <div class="Galeria" id="Producto_4">
             <h2>Fender Guitar</h2>
-            <img src="assest/imagenes/straomejor.webp" alt="Fender Stratocaster" width="500" height="350">
+            <img src="{% static 'guitarweb/images/straomejor.webp' %}" alt="Fender Stratocaster" width="500" height="350">
             <p>$25000.00</p>
-            <input type="submit" Value="Comprar" src="Compra-producto.html" ></input>
+            <input type="submit" value="Comprar">
         </div>
         <div class="Galeria" id="Producto_5">
             <h2>Jackson Guitar</h2>
-            <img src="assest/imagenes/jacksonmx.webp" alt="Jackson MF-1" width="500" height="350">
+            <img src="{% static 'guitarweb/images/jacksonmx.webp' %}" alt="Jackson MF-1" width="500" height="350">
             <p>$14800.00</p>
-            <input type="submit" Value="Comprar" src="Compra-producto.html" ></input>
+            <input type="submit" value="Comprar">
         </div>
     </div>
 
-<section id="Contacto">
-    <h2>Contantanos!!!</h2>
-    <form action="#" method="post">
-        <label for="name">Nombre</label>
-        <input type="text" id="name" name="name" requiered> </input>
-        <br>
-        <label for="email">Correo Electronico</label>
-        <input type="email" id="email" name="email" required>
-        <br>
-        <label for="message">Mensaje</label>
-        <textarea id="message" name="message" rows="4"></textarea>
-        <br>
-        <input type="submit" Value="Enviar"></input>
-    </form>
+    <!-- Botón para agregar un producto -->
+    <a href="{% url 'agregar_producto' %}">
+        <button>Agregar Producto</button>
+    </a>
 
-</section>
-
+    <!-- Sección Contacto -->
+    <section id="Contacto">
+        <h2>¡Contáctanos!</h2>
+        <form action="#" method="post">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" required>
+            <br>
+            <label for="email">Correo Electrónico</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" rows="4"></textarea>
+            <br>
+            <input type="submit" value="Enviar">
+        </form>
+    </section>
 </body>
 </html>
